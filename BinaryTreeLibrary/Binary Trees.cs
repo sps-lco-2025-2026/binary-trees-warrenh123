@@ -68,6 +68,11 @@ public class BinaryTree
 
         while(true)
         {
+            if(v ==  current.value) // Don't allow duplicates
+            {
+                return;
+            }
+
             if(v < current.value)
             {
                 if(current.left == null)
@@ -157,8 +162,45 @@ public class BinaryTree
 
         return left + current + right;
     }
+
+    // Duplicate 
+    // Went back and changed my Insert method so that there cannot be a duplicate in tree
     
+    // Depth method
+    public int Depth()
+    {
+        return DepthRec(root);
+    }
 
+    private int DepthRec(BinaryTreeNode node)
+    {
+        if(node == null)
+        {
+            return 0;
+        }
 
+        int leftDepth = DepthRec(node.left);
+        int rightDepth = DepthRec(node.right);
 
+        return Math.Max(leftDepth, rightDepth) + 1;
+    }
+
+    // Check Balanced method
+    public bool IsBalanced()
+    {
+        return IsBalancedRec(root);
+    }
+    
+    private bool IsBalancedRec(BinaryTreeNode node)
+    {
+        if(node == null)
+        {
+            return true;
+        }
+
+        int leftDepth = DepthRec(node.left);
+        int rightDepth = DepthRec(node.right);
+
+        return Math.Abs(leftDepth - rightDepth) <= 1 && IsBalancedRec(node.left) && IsBalancedRec(node.right);
+    }
 }

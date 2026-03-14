@@ -72,4 +72,34 @@ public sealed class Test1
 
         Assert.AreEqual("10 20 30 ", result);
     }
+
+    [TestMethod]
+    public void TestDepth_ReturnsTrue()
+    {
+        BinaryTree btree = new BinaryTree();
+
+        List<int> valuesToInsert = new List<int>{20, 10, 40, 30, 8, 4, 15};
+        foreach(int i in valuesToInsert)
+        {
+            btree.InsertIterative(i);
+        }
+
+        int result = btree.Depth();
+
+        Assert.AreEqual(4, result);
+    }
+
+    [TestMethod]
+    public void TestBalanced_ReturnsTrue()
+    {
+        BinaryTree btree = new BinaryTree();
+
+        List<int> valuesToInsert = new List<int>{20, 10, 40, 30, 8, 4, 15};
+        foreach(int i in valuesToInsert)
+        {
+            btree.InsertIterative(i);
+        }
+
+        Assert.IsTrue(btree.IsBalanced());
+    }
 }
