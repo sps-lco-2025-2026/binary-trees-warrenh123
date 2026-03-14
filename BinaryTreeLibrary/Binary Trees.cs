@@ -203,4 +203,61 @@ public class BinaryTree
 
         return Math.Abs(leftDepth - rightDepth) <= 1 && IsBalancedRec(node.left) && IsBalancedRec(node.right);
     }
+
+    // Deletion
+    public void Delete(int v)
+    {
+        if (root == null) return;
+
+        BinaryTreeNode current = root;
+        BinaryTreeNode parent = null; 
+        bool found = false;
+
+        // Search node and parent
+        while (current != null)
+        {
+            if (v == current.value)
+            {
+                found = true;
+                break;
+            }
+
+            parent = current;
+
+            if (v < current.value)
+            {
+                current = current.left;
+            }   
+            else
+            {
+                current = current.right;
+            }
+        }
+        if (!found) return;
+
+        //Node has no children
+        if (current.left == null && current.right == null)
+        {
+            if (current == root) // if tree only has root and we want to delete root
+            {
+                root = null;
+            }
+            else if (parent.left == current)
+            {
+                parent.left = null;
+            }
+            else
+            {
+                parent.right = null;
+            }
+        }
+
+        //Node has one child
+    
+}
+
+
+
+
+
 }
