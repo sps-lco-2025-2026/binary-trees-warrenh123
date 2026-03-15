@@ -238,7 +238,7 @@ public class BinaryTree
         //Node has no children
         if (current.left == null && current.right == null)
         {
-            if (current == root) // if tree only has root and we want to delete root
+            if (current == root)
             {
                 root = null;
             }
@@ -250,14 +250,54 @@ public class BinaryTree
             {
                 parent.right = null;
             }
+            return;
         }
+        
 
         //Node has one child
-    
-}
+        if(current.left == null || current.right == null)
+        {
+            BinaryTreeNode child = (current.left != null) ? current.left : current.right;
 
+            if (current == root)
+            {
+                root = child; 
+            }
+            else if (parent.left == current)
+            {
+                parent.left = child;
+            }
+            else
+            {
+                parent.right = child;
+            }
+            return; 
+        }
 
+        //Node has two children
+        else
+        {
+            BinaryTreeNode succParent = current;
+            BinaryTreeNode succ = current.right;
 
+            while (succ.left != null)
+            {
+                succParent = succ;
+                succ = succ.left;
+            }
 
+            current.value = succ.value;
+
+            if(succParent == current)
+            {
+                succParent.right = succ.right;
+            }
+            else
+            {
+                succParent.left = succ.right;
+            }
+            
+        }
+    }
 
 }

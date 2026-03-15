@@ -102,4 +102,45 @@ public sealed class Test1
 
         Assert.IsTrue(btree.IsBalanced());
     }
+
+    [TestMethod]
+    public void Delete_NoChildren_ReturnsTrue()
+    {
+        BinaryTree btree = new BinaryTree();
+        btree.InsertIterative(10);
+        btree.InsertIterative(5);
+        btree.InsertIterative(15);
+        
+        btree.Delete(5);
+        string result = btree.ToString().Trim();
+        
+        Assert.AreEqual("10 15", result);
+    }   
+
+    public void Delete_OneChild_ReturnsTrue()
+    {
+        
+        BinaryTree btree = new BinaryTree();
+        btree.InsertIterative(10);
+        btree.InsertIterative(20);
+        btree.InsertIterative(30);
+
+        btree.Delete(20);
+        string result = btree.ToString().Trim();
+
+        Assert.AreEqual("10 30", result);
+    }
+    public void Delete_TwoChildren_ReturnsTrue()
+    {
+        BinaryTree btree = new BinaryTree();
+        btree.InsertIterative(10);
+        btree.InsertIterative(15);
+        btree.InsertIterative(12);
+        btree.InsertIterative(18);
+        btree.InsertIterative(16); 
+
+        string result = btree.ToString().Trim();
+
+        Assert.AreEqual("10 12 16 18", result);
+    }
 }
