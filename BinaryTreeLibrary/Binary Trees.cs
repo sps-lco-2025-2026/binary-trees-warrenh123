@@ -28,7 +28,7 @@ public class BinaryTree
         root = null;
     }
 
-    // Insert Method (I don't understand the recursive approach, wasn't my code)
+    // Insert Method (I don't understand the last line, wasn't my code)
     public void InsertRecursive(int v)
     {
         root = InsertRec(root, v);
@@ -50,7 +50,7 @@ public class BinaryTree
             current.right = InsertRec(current.right,v);
         }
 
-        return current;
+        return current; // don't understand why I need this last return 
     }
 
 
